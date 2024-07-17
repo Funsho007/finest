@@ -1,0 +1,43 @@
+<div class="container box">
+  <div class="columns">
+    <div class="column is-one-third">
+      <% if @product.image.attached? %>
+      <figure class="image is-3by5">
+        <%= image_tag @product.image %>
+        </figure>
+      <% end %>
+    </div>
+    <div class="column">
+      <div class="product-full-details">
+        <h1 class="title is-1"><%= @product.name %></h1>
+        <p>Brand: <%= link_to @product.brand.name, products_path(brand_id: @product.brand_id) %></p>
+        <p>Type: <%= link_to @product.type.name, products_path(type_id: @product.type_id) %></p>
+        <p>Category: <%= link_to @product.category.name, products_path(category_id: @product.category_id) %></p>
+        <% if @product.on_sale_status %>
+          <p class="has-text-weight-bold"><span class="has-text-danger">-10%</span><strong>$<%= (@product.price * 0.9).round(2) %></strong></p>
+          <p class="has-text-decoration-line-through has-text-grey"><s>Price: $<%= @product.price %></s></p>
+        <% else %>
+           <p>Price: $<%= @product.price %></p>
+        <% end %>
+        <p>Description: <%= @product.description.html_safe %></p>
+        <% if @tags.any? %>
+          <ul>Tags:
+            <% @tags.each do |tag| %>
+              <li><%= link_to tag.name, tag_products_path(tag) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <%= form_tag add_to_cart_product_path(@product), method: :post do %>
+        <%= hidden_field_tag :product_id, @product.id %>
+        <%= label_tag :quantity, 'Quantity:' %>
+        <%= number_field_tag :quantity, 1, min: 1 %>
+        <%= submit_tag 'Add to Cart' %>
+      <% end %>
+
+
+      <%= link_to "Back to all products", products_path, class: "button is-info mt-6" %>
+    </div>
+  </div>
+</div>

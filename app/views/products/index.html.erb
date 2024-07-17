@@ -1,0 +1,32 @@
+<!-- app/views/products/filter.html.erb -->
+<div class="container">
+  <%= render partial: 'filter' %>
+
+
+ <div class="container box">
+   <%= paginate @products %>
+  <% if params[:filter].present? %>
+    <% if params[:filter] == 'new' %>
+      <% if @products.empty? %>
+        <h3 class="title is-5">No New Products Found</h3>
+      <% else %>
+        <h3 class="title is-5">Current Filter: New Products</h3>
+      <% end %>
+    <% elsif params[:filter] == 'on_sale' %>
+      <% if @products.empty? %>
+        <h3 class="title is-5">No Products on Sale Found</h3>
+      <% else %>
+        <h3 class="title is-5">Current Filter: On Sale Products</h3>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h3 class="title is-5">All Products</h3>
+  <% end %>
+
+  <div class="columns is-multiline">
+    <% @products.each do |product| %>
+      <%= render product %>
+    <% end %>
+  </div>
+ </div>
+</div>
