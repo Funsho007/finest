@@ -8,5 +8,8 @@ class OrderItem < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["quantity", "price", "created_at", "updated_at"]
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["order", "product"]
+  end
 end
-#validates :name, presence: true

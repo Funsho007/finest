@@ -1,0 +1,11 @@
+<h1>Category: <%= @category.name %></h1>
+
+<% @products.each do |product| %>
+  <div class="product">
+    <h2><%= link_to product.name, product_path(product) %></h2>
+    <p><%= product.description %></p>
+    <p>Price: <%= product.price %></p>
+  </div>
+<% end %>
+
+<%= paginate @products %>

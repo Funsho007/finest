@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Finest</title>
+    <title>ECommercePrettyface</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <nav>
-  <%= link_to 'Home', root_path %>
-  <%= link_to 'About', static_page_path('About') %>
-  <%= link_to 'Contact', static_page_path('Contact') %>
-  <!-- Other links -->
-</nav>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <nav class="bg-gray-800 p-4 text-white">
+      <div class="container mx-auto">
+        <%= link_to "Home", root_path, class: "text-white px-2" %>
+        <%= link_to "Contact Us", page_path(permalink: 'contact'), class: "text-white px-2" %>
+        <%= link_to "About Us", page_path(permalink: 'about'), class: "text-white px-2" %>
+      </div>
+    </nav>
+    <main class="container mx-auto mt-8 px-5 flex">
       <%= yield %>
     </main>
   </body>

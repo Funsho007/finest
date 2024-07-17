@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_17_002339) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_173307) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -82,6 +82,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_002339) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "primary_province_id"
+    t.integer "alt_province_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "primary_address"
+    t.string "primary_city"
+    t.string "primary_postal_code"
+    t.string "alt_address"
+    t.string "alt_city"
+    t.string "alt_postal_code"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -111,6 +126,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_002339) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "permalink"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -118,6 +141,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_002339) do
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "on_sale_status"
+    t.integer "brand_id", null: false
+    t.integer "type_id", null: false
+    t.integer "category_id", null: false
+    t.string "image_url"
+    t.index ["brand_id"], name: "index_products_on_brand_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["type_id"], name: "index_products_on_type_id"
+  end
+
+  create_table "products_tags", id: false, force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["product_id", "tag_id"], name: "index_products_tags_on_product_id_and_tag_id"
+    t.index ["tag_id", "product_id"], name: "index_products_tags_on_tag_id_and_product_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -152,4 +190,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_002339) do
   add_foreign_key "order_items", "products"
   add_foreign_key "order_summaries", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "types"
 end

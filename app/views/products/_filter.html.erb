@@ -15,20 +15,20 @@
       </div>
     </div>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Filter By</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Filter By</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
           <%= form_tag(filter_products_path, method: :get, class: 'navbar-item', id: 'filter-form') do %>
             <div class="select is-dark control">
-              <%= select_tag(:filter, options_for_select({ 'New' => 'new', 'On_sale' => 'on_sale' }, params[:filter]), include_blank: 'All', id: 'filter-select') %>
+              <%= select_tag(:filter, options_for_select({ 'New' => 'new', 'On Sale' => 'on_sale' }, params[:filter]), include_blank: 'All', id: 'filter-select') %>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 

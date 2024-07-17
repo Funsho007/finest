@@ -1,6 +1,9 @@
 <div>
-  <h1 class="font-bold text-4xl">StaticPages#show</h1>
+  <h1 class="font-bold text-4xl">
+    <%= @static_page.title %>
+  </h1>
   <p>Find me in app/views/static_pages/show.html.erb</p>
-  <h1><%= @static_page.title %></h1>
-<div><%= @static_page.content.html_safe %></div>
+  <div>
+    <%= @static_page.content.html_safe %>
+  </div>
 </div>
