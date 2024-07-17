@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="title">My Orders</h1>
+
+  <% if @orders.empty? %>
+    <p>No orders found.</p>
+  <% else %>
+    <ul class="menu-list">
+      <% @orders.each do |order| %>
+        <li>
+          <%= link_to "Order - #{order.order_date.strftime('%B %e, %Y')}", order_path(order), class: 'has-text-link' %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
