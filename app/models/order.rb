@@ -8,3 +8,4 @@ class Order < ApplicationRecord
     ["status", "created_at", "updated_at"]
   end
 end
+#validates :name, presence: true

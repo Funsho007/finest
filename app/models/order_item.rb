@@ -9,3 +9,4 @@ class OrderItem < ApplicationRecord
     ["quantity", "price", "created_at", "updated_at"]
   end
 end
+#validates :name, presence: true
