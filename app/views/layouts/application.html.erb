@@ -9,6 +9,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <nav>
+  <%= link_to 'Home', root_path %>
+  <%= link_to 'About', static_page_path('About') %>
+  <%= link_to 'Contact', static_page_path('Contact') %>
+  <!-- Other links -->
+</nav>
   </head>
 
   <body>
